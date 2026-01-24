@@ -1,0 +1,9 @@
+{
+  "videos": [
+    {
+      "id": "1",
+      "title": "beach",
+      "playlistUrl": "http://localhost:8080/hls/1/index.m3u8"
+    }
+  ]
+}
