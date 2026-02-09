@@ -97,6 +97,8 @@ QoE data is emitted from the React player and sent to the backend during playbac
   "rebufferCount": 1,
   "watchedMs": 12644
 }
+```
+
 
 
 ## FFmpeg: Generating Adaptive Bitrate HLS Streams
