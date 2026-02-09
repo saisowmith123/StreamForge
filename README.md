@@ -23,7 +23,7 @@ It simulates a CDN-like architecture locally and visualizes real-time bitrate sw
 
 ### System Flow
 
-<img width="736" height="671" alt="streamForge2" src="https://github.com/user-attachments/assets/06cede83-f21f-4481-b174-ac5273a69676" />
+<img width="736" height="671" alt="streamForge3" src="https://github.com/user-attachments/assets/da99d933-ed23-4632-b1c7-8ba791a12ff5" />
 
 ---
 
