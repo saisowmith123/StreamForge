@@ -23,7 +23,7 @@ It simulates a CDN-like architecture locally and visualizes real-time bitrate sw
 
 ### System Flow
 
-<img width="850" height="1100" alt="streamForge2" src="https://github.com/user-attachments/assets/bd894b3d-c081-4555-9cb4-0df2c6a68279" />
+<img width="766" height="661" alt="streamForge3" src="https://github.com/user-attachments/assets/1833983a-8f9f-49f7-8d89-fee983a8996e" />
 
 ---
 
@@ -45,6 +45,59 @@ Below is a snapshot of real-time variant switches chosen by hls.js during playba
 <img width="375" height="132" alt="git-stream" src="https://github.com/user-attachments/assets/d127ad3d-9e84-4850-93b0-e1f8bce58735" />
 
 ---
+
+## Quality of Experience (QoE) Metrics
+
+StreamForge collects **client-side playback metrics** to measure real user streaming experience, similar to how production video platforms monitor playback health.
+
+QoE data is emitted from the React player and sent to the backend during playback.
+
+---
+
+### Metrics Collected
+
+| Metric | Description |
+|------|-------------|
+| `startupTimeMs` | Time (ms) taken from play click to first frame rendered |
+| `rebufferCount` | Number of playback stalls during the session |
+| `watchedMs` | Total playback duration watched by the user |
+| `variant` | Final bitrate variant used (e.g., 240p / 360p / 720p) |
+| `videoId` | Identifier of the video being played |
+| `sessionId` | Unique playback session identifier |
+| `receivedAt` | Timestamp when the metric was received by backend |
+
+---
+
+### QoE Data Flow
+
+1. User starts video playback in the browser
+2. `hls.js` begins fetching segments and selecting variants
+3. Player tracks:
+   - Startup delay
+   - Buffering events
+   - Variant switches
+   - Watch duration
+4. Metrics are sent periodically to backend:
+   - `POST /api/qoe`
+5. Backend stores metrics in memory (for demo purposes)
+6. Aggregated data is available via:
+   - `GET /api/qoe/latest`
+   - `GET /api/qoe/summary`
+
+---
+
+### Sample QoE Payload
+
+```json
+{
+  "sessionId": "1770602043311-5b982033e74eb8",
+  "videoId": "1",
+  "variant": "2",
+  "startupTimeMs": 186,
+  "rebufferCount": 1,
+  "watchedMs": 12644
+}
+
 
 ## FFmpeg: Generating Adaptive Bitrate HLS Streams
 
